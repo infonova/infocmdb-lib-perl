@@ -1,0 +1,37 @@
+#!/bin/bash
+ 
+# Runs all executable pre-commit-* hooks and exits after,
+# if any of them was not successful.
+#
+# Based on
+# https://github.com/ELLIOTTCABLE/Paws.js/blob/Master/Scripts/git-hooks/chain-hooks.sh
+# http://osdir.com/ml/git/2009-01/msg00308.html
+
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+ 
+exitcodes_wrapper=()
+hookname=`basename $0`
+HOOK_DIR=$(git rev-parse --show-toplevel)/git/hooks
+# Run each hook, passing through STDIN and storing the exit code.
+# We don't want to bail at the first failure, as the user might
+# then bypass the hooks without knowing about additional issues.
+for hook in $HOOK_DIR/$hookname-*; do
+  echo "Hook.. $hook"
+  test -x "$hook" || continue
+
+  out=`$hook`
+  if [ ! -z "$out" ]; then
+	printf ${RED}
+	echo $out
+	printf ${NC}
+  fi
+
+  echo ""
+  exitcodes_wrapper+=$?
+done
+ 
+# If any exit code isn't 0, bail.
+for i in "${exitcodes_wrapper[@]}"; do
+  [ "$i" == 0 ] || exit $i
+done

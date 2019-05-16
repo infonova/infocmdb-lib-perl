@@ -1,0 +1,4 @@
+etc/*
+log/*
+!*.dist
+!.gitkeep

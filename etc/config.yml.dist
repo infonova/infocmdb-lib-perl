@@ -1,0 +1,5 @@
+apiUrl: http://xycmdb.infonova.at/
+apiUser: ext_webservice
+apiPassword: xyz
+autoHistoryHandling: 1
+CmdbBasePath: 
