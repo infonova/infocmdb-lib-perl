@@ -2,3 +2,4 @@ etc/*
 log/*
 !*.dist
 !.gitkeep
+.idea

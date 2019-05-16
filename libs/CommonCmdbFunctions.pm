@@ -134,11 +134,11 @@ sub callWebservice {
 	my $apiurl;
 	my $ua = LWP::UserAgent->new;  # we create a global UserAgent object
 	if($type eq "notify") {
-		$apiurl = "http://itocmdb.infonova.at/api/notification/apikey/".$apikey."/".$type."/".$name;
+		$apiurl = "http://<cmdb>/api/notification/apikey/".$apikey."/".$type."/".$name;
 	}elsif($type eq "exec") {
-		$apiurl = "http://itocmdb.infonova.at/api/adapter/apikey/".$apikey."/";
+		$apiurl = "http://<cmdb>/api/adapter/apikey/".$apikey."/";
 	} else {
-		$apiurl = "http://itocmdb.infonova.at/api/adapter/apikey/".$apikey."/".$type."/".$name."/method/".$method;
+		$apiurl = "http://<cmdb>/api/adapter/apikey/".$apikey."/".$type."/".$name."/method/".$method;
 	}
 	my $res;
 	my $req = HTTP::Request->new(POST => $apiurl);
