@@ -1,4 +1,4 @@
-apiUrl: http://xycmdb.infonova.at/
+apiUrl: http://localhost/
 apiUser: ext_webservice
 apiPassword: xyz
 autoHistoryHandling: 1
